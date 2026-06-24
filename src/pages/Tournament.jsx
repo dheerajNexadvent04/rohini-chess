@@ -73,7 +73,7 @@ export default function Tournament() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container gallery-grid">
         {TOURNAMENT_IMAGES.map((src, i) => (
           <div className="col-md-4 col-sm-4 col-lg-4 col-xs-12 img-box" key={src}>
             <button type="button" className="example-image-link" onClick={() => lightbox.open(i)} style={{ border: 0, padding: 0, background: 'none' }}>

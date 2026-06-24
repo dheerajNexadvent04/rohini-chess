@@ -13,7 +13,7 @@ export default function GalleryCarousel({ images }) {
         modules={[Autoplay, Navigation]}
         navigation
         loop
-        spaceBetween={10}
+        spaceBetween={20}
         autoplay={{ delay: 1000, disableOnInteraction: false, pauseOnMouseEnter: true }}
         breakpoints={{
           0: { slidesPerView: 1 },
@@ -23,20 +23,14 @@ export default function GalleryCarousel({ images }) {
       >
         {images.map((src, i) => (
           <SwiperSlide key={src}>
-            <div className="product-container">
+            <button type="button" className="product-container" onClick={() => lightbox.open(i)}>
               <div className="left-block">
                 <img className="img-responsive" alt="Rohini Chess Academy gallery" src={src} />
               </div>
-              <div className="right-block hidden-xs">
-                <div className="right-block-1">
-                  <div className="button-group">
-                    <button type="button" className="btn-shop" onClick={() => lightbox.open(i)}>
-                      View large
-                    </button>
-                  </div>
-                </div>
+              <div className="right-block">
+                <span className="btn-shop">View large</span>
               </div>
-            </div>
+            </button>
           </SwiperSlide>
         ))}
       </Swiper>

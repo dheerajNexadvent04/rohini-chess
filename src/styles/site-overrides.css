@@ -1,6 +1,14 @@
 /* Supplemental styles for behavior ported from jQuery plugins (Nivo/Owl/Fancybox/Bootstrap modal)
    that didn't exist in the original CSS files, since those plugins carried their own markup/CSS. */
 
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  background: #fff;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -12,22 +20,146 @@ html {
 }
 
 /* Gallery strip carousel (replaces Owl Carousel) */
-.gallery-swiper .swiper-slide {
+.gallery-swiper {
+  margin-top: 12px;
+  padding: 4px 4px 14px;
+}
+
+.gallery-swiper .product-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  font: inherit;
+  text-align: inherit;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.gallery-swiper .left-block {
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.gallery-swiper .left-block img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gallery-swiper .product-container:hover .left-block img,
+.gallery-swiper .product-container:focus-visible .left-block img {
+  transform: scale(1.08);
+}
+
+/* Full-image hover scrim with a centered "View large" pill, instead of the
+   original's permanent gold bar sitting over the bottom third of every photo. */
+.gallery-swiper .right-block {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 40, 70, 0);
+  transition: background 0.3s ease;
+}
+
+.gallery-swiper .product-container:hover .right-block,
+.gallery-swiper .product-container:focus-visible .right-block {
+  background: rgba(20, 51, 92, 0.5);
+}
+
+.gallery-swiper .btn-shop {
   height: auto;
+  line-height: normal;
+  border-radius: 30px;
+  padding: 9px 22px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.gallery-swiper .product-container:hover .btn-shop,
+.gallery-swiper .product-container:focus-visible .btn-shop {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  /* No hover on touch - keep the button visible so the gallery is still usable. */
+  .gallery-swiper .right-block {
+    background: rgba(20, 51, 92, 0.25);
+  }
+  .gallery-swiper .btn-shop {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: #fff;
-  background: rgba(0, 0, 0, 0.35);
-  width: 36px;
-  height: 36px;
+  top: 50%;
+  margin-top: -13px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #275581;
+  color: #275581;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  font-size: 16px;
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #275581;
+  color: #fff;
+}
+
+.swiper-button-next svg,
+.swiper-button-prev svg {
+  width: 89%;
+  height: 63%;
+}
+
+@media (max-width: 600px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+
+/* Dedicated gallery/tournament image grids (Gallery.jsx, Tournament.jsx) */
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-grid .img-box {
+  margin-bottom: 24px;
+}
+
+.gallery-grid .example-image-link {
+  display: block;
+}
+
+.gallery-grid .example-image-link {
+  background: #f2f2f2;
+}
+
+.gallery-grid .example-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  display: block;
 }
 
 /* Lightbox (replaces Fancybox) */

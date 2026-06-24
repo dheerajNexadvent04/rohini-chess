@@ -23,7 +23,7 @@ export default function Gallery() {
             <div id="oContentBlock" className="col-lg-12">
               <div id="oMainContentBlock">
                 <div id="ot-maincontent">
-                  <div className="page-content">
+                  <div className="page-content gallery-grid">
                     {GALLERY_ITEMS.map((item, i) => (
                       <div className="col-md-4 col-sm-4 col-lg-4 col-xs-12 img-box" key={item.src}>
                         <button type="button" className="example-image-link" onClick={() => lightbox.open(i)} style={{ border: 0, padding: 0, background: 'none' }}>
