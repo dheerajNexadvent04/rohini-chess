@@ -1,7 +1,7 @@
 /* Supplemental styles for behavior ported from jQuery plugins (Nivo/Owl/Fancybox/Bootstrap modal)
    that didn't exist in the original CSS files, since those plugins carried their own markup/CSS. */
 
-html, body, #root {
+html, body {
   min-height: 100%;
 }
 
@@ -9,8 +9,74 @@ body {
   background: #fff;
 }
 
+/* Sticky footer: on short pages (Market Area, Career, etc.) the footer should
+   still sit at the bottom of the viewport instead of leaving a blank gap below
+   it. #root/.wrapper become a flex column and .page-main absorbs the slack.
+   min-height:100vh (not 100%) because percentage heights only resolve through
+   a chain of ancestors that all have a *definite* height - html/body only
+   have min-height set, so 100% silently failed to reach #root at all. */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Homepage sections (Home.jsx): one consistent top gap between each section,
+   instead of each component (.testimonial-section, .faq-section, .page-top)
+   carrying its own different margin value. */
+.home-section {
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+.home-section .testimonial-section,
+.home-section .faq-section {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .home-section {
+    margin-top: 36px;
+  }
+}
+
+.page-main {
+  flex: 1;
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+/* Consistent breathing room above the footer on every page, regardless of
+   what content (FAQ, partner list, form, etc.) happens to end the page. */
+#footer {
+  margin-top: 50px;
+}
+
+/* The original body.header-fixed-space-default padding-top (73px) was tuned
+   for the header's shrunk-on-scroll height. The unshrunk header on initial
+   page load is actually 98px tall, so pages without a tall hero section
+   (i.e. everything except Home) had their first heading hidden behind it. */
+body.header-fixed-space-default {
+  padding-top: 100px;
+}
+
+/* Section heading (".OUR GALLERY", "FREQUENTLY ASKED QUESTIONS", etc.) -
+   lighter weight, larger size than the original 18px/800 bold. */
+.group-title span {
+  text-transform: uppercase;
+  padding: 5px 0px;
+  color: #275581;
+  font-size: 33px;
+  font-weight: 400;
 }
 
 /* Hero slider (replaces Nivo Slider) */
@@ -222,11 +288,12 @@ html {
   .lightbox-close { top: 5px; right: 5px; }
 }
 
-/* Back to top (replaces js1/back-to-top.js) */
+/* Back to top (replaces js1/back-to-top.js) - sits stacked above the
+   WhatsApp widget so the two fixed bottom-right buttons don't overlap. */
 .back-to-top {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 86px;
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -236,6 +303,47 @@ html {
   cursor: pointer;
   z-index: 999;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* WhatsApp chat widget */
+.whatsapp-widget {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-widget:hover {
+  transform: scale(1.08);
+}
+
+.whatsapp-widget img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .whatsapp-widget {
+    right: 12px;
+    bottom: 12px;
+    width: 46px;
+    height: 46px;
+  }
+  .back-to-top {
+    right: 12px;
+    bottom: 70px;
+  }
 }
 
 /* Free class popup (replaces Bootstrap modal JS) */
@@ -276,12 +384,11 @@ html {
 }
 
 /* Honeypot field for basic bot filtering on lead forms */
+/* display:none (rather than just offscreen) so browser autofill skips it too -
+   an offscreen-but-rendered input can still get swept up by autofill heuristics,
+   silently aborting the whole form submit since the honeypot looks "filled". */
 .hp-field {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  display: none;
 }
 
 .lead-form-note {
@@ -292,11 +399,497 @@ html {
 .lead-form-note.success { color: #2e7d32; }
 .lead-form-note.error { color: #FB3A3A; }
 
-/* Footer social icons - the new logo PNGs are full-res square badges, unlike
-   the original tiny pre-sized facebook.jpg/twitter.jpg, so size them explicitly. */
-.footer-contact .socialicons {
-  width: 28px;
-  height: 28px;
+/* Footer social icons. The source PNGs aren't consistent (twitterlogo.png is
+   633x394, the rest are ~500x500), so each icon is framed in an identical
+   fixed-size box and cropped to fill it with object-fit: cover - otherwise
+   the non-square one letterboxes and looks smaller than the others. */
+.socialicon-box {
+  float: left;
+  margin-right: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
   border-radius: 6px;
-  object-fit: contain;
+  overflow: hidden;
+  background: #fff;
+}
+
+.footer-contact .socialicons {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* FAQ accordion (School.jsx and any other page that uses <Faq>) */
+.faq-section {
+  margin-top: 35px;
+  clear: both;
+}
+
+.faq-title {
+  margin-bottom: 18px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.faq-item.open {
+  border-color: #275581;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  margin: 0;
+  font: inherit;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+}
+
+.faq-item.open .faq-question {
+  color: #275581;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #275581;
+  color: #275581;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: #275581;
+  color: #fff;
+}
+
+/* Smooth open/close without measuring scrollHeight in JS: animate the row
+   track size of a 1-row grid from 0fr to 1fr. */
+.faq-answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.faq-item.open .faq-answer-wrap {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.faq-answer {
+  margin: 0;
+  padding: 0 18px 16px;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .faq-question {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+  .faq-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+  }
+}
+
+/* Free Puzzle sticky button + lead-capture modal. Same lead pipeline as
+   LeadForm (useLeadSubmit -> Sheet2), kept boxy/navy-gold instead of the
+   rounded dark-pill reference design, to match the rest of the site. */
+.puzzle-cta-btn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #275581;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.puzzle-cta-btn:hover {
+  background: #1d4066;
+}
+
+.puzzle-cta-icon {
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  .puzzle-cta-btn {
+    left: 12px;
+    bottom: 12px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
+
+.puzzle-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.puzzle-modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e3e3e3;
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.puzzle-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #f7f7f7;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.puzzle-modal-icon {
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.puzzle-modal-title {
+  color: #275581;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.puzzle-modal-subtitle {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 22px;
+}
+
+.puzzle-modal-label {
+  display: block;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.puzzle-modal-dialog .form-control {
+  margin-bottom: 16px;
+}
+
+.puzzle-modal-submit {
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background: #ebb223;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 0;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.puzzle-modal-submit:hover {
+  opacity: 0.9;
+}
+
+.puzzle-modal-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.puzzle-modal-dialog .lead-form-note {
+  margin-top: 14px;
+}
+
+/* Testimonials carousel (Home.jsx). Nav buttons are flex siblings of the
+   Swiper, not children of it - Swiper's own ".swiper" root has overflow:hidden
+   to clip off-screen slides, so anything padded/positioned to sit outside that
+   same box (as the old approach tried) gets clipped or miscentered too. Being
+   a sibling sidesteps both problems and centers for free via align-items. */
+.testimonial-section {
+  margin: 10px 0 40px;
+}
+
+.testimonial-section .group-title {
+  margin-bottom: 24px;
+}
+
+.testimonial-carousel-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.testimonial-swiper {
+  flex: 1;
+  min-width: 0;
+}
+
+.testimonial-nav-btn {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #275581;
+  color: #275581;
+  font-size: 47px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.testimonial-nav-btn:hover {
+  background: #275581;
+  color: #fff;
+}
+
+.testimonial-card {
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.testimonial-image img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.testimonial-body {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.testimonial-stars {
+  color: #ebb223;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.testimonial-rating {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.testimonial-rating strong {
+  color: #ebb223;
+}
+
+.testimonial-title {
+  color: #222;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.testimonial-text {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .testimonial-card {
+    grid-template-columns: 1fr;
+  }
+  .testimonial-image img {
+    aspect-ratio: 16 / 9;
+  }
+  .testimonial-body {
+    padding: 24px 22px;
+  }
+  .testimonial-title {
+    font-size: 18px;
+  }
+  .testimonial-nav-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  .testimonial-carousel-wrap {
+    gap: 8px;
+  }
+}
+
+/* School partner zig-zag section (School.jsx) - plain image/text pairs,
+   alternating sides, no card chrome. */
+.partner-zigzag {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 25px 0;
+}
+
+.partner-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.partner-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.partner-row.reverse .partner-image {
+  order: 2;
+}
+
+.partner-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
+
+.partner-info h3 {
+  color: #275581;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.partner-info p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 60ch;
+}
+
+@media (max-width: 768px) {
+  .partner-row {
+    grid-template-columns: 1fr;
+  }
+  .partner-row.reverse .partner-image {
+    order: initial;
+  }
+}
+
+/* Market Area chips (MarketArea.jsx) - replaces the dated 3-column dashed
+   list with a clean, responsive wrapping chip grid in the site's theme. */
+.market-area-intro {
+  color: #555;
+  font-size: 14px;
+  margin: 0 0 20px;
+}
+
+.area-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.area-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f4f7fb;
+  border: 1px solid #dde6f0;
+  color: #275581;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 30px;
+  padding: 10px 18px;
+}
+
+.area-chip-icon {
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .area-chip-grid {
+    gap: 8px;
+  }
+  .area-chip {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}
+
+/* Font Awesome icons site-wide (header phone icon, hamburger, back-to-top) -
+   default .fa is font-size:inherit; sized up explicitly here instead. */
+.fa {
+  font-size: 24px;
+  margin-top: -1px;
 }

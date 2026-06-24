@@ -36,24 +36,24 @@ export default function Footer() {
 
           <div className="col-lg-5">
             <div className="right clearfix">
-              <p className="copyright"><small>Copyright &#169; 2018 <strong> Rohini Chess Academy</strong>. All rights reserved</small></p>
+              <p className="copyright"><small>Copyright &#169; 2026 <strong> Rohini Chess Academy</strong>. All rights reserved</small></p>
 
               <div className="vcard">
                 <div className="footer-contact">
                   <ul className="socials">
-                    <a href="https://www.facebook.com/rohinichessacademy/" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="Facebook">
+                    <a href="https://www.facebook.com/rohinichessacademy/" target="_blank" rel="noreferrer" className="socialicon-box" title="Facebook">
                       <img src="/facebooklogo.png" className="socialicons" alt="Facebook" />
                     </a>
-                    <a href="https://twitter.com/" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="Twitter">
+                    <a href="https://twitter.com/" target="_blank" rel="noreferrer" className="socialicon-box" title="Twitter">
                       <img src="/twitterlogo.png" className="socialicons" alt="Twitter" />
                     </a>
-                    <a href="https://www.instagram.com/sckoolchess?igsh=bzMwaTB0YWw2d2Iz" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="Instagram">
+                    <a href="https://www.instagram.com/sckoolchess?igsh=bzMwaTB0YWw2d2Iz" target="_blank" rel="noreferrer" className="socialicon-box" title="Instagram">
                       <img src="/instagramlogo.png" className="socialicons" alt="Instagram" />
                     </a>
-                    <a href="https://www.youtube.com/@sckoolchess" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="YouTube">
+                    <a href="https://www.youtube.com/@sckoolchess" target="_blank" rel="noreferrer" className="socialicon-box" title="YouTube">
                       <img src="/youtubelogo.png" className="socialicons" alt="YouTube" />
                     </a>
-                    <a href="https://www.linkedin.com/company/sckoolchess/" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="LinkedIn">
+                    <a href="https://www.linkedin.com/company/sckoolchess/" target="_blank" rel="noreferrer" className="socialicon-box" title="LinkedIn">
                       <img src="/linkedinlogo.png" className="socialicons" alt="LinkedIn" />
                     </a>
                   </ul>

@@ -32,11 +32,18 @@ export default function MarketArea() {
             <div id="oContentBlock" className="col-lg-12">
               <div id="oMainContentBlock">
                 <div className="page-content">
-                  <ul className="market-list">
+                  <h2 className="group-title"> <span>Areas We Serve</span> </h2>
+                  <p className="market-area-intro">
+                    Rohini Chess Academy provides chess coaching - both online and offline - across these localities in Delhi NCR.
+                  </p>
+                  <div className="area-chip-grid">
                     {AREAS.map((area) => (
-                      <li key={area}>{area}</li>
+                      <span className="area-chip" key={area}>
+                        <span className="area-chip-icon" aria-hidden="true">📍</span>
+                        {area}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </div>

@@ -33,3 +33,14 @@ export const GALLERY_ITEMS = [
 ]
 
 export const GALLERY_IMAGES = GALLERY_ITEMS.map((item) => item.src)
+
+// Source: public/whatsapp/ (renamed to whatsapp-gallery-01..61.jpeg for clean URLs).
+// Shown on the dedicated Gallery page only, not the homepage carousel.
+export const WHATSAPP_GALLERY_ITEMS = Array.from({ length: 61 }, (_, i) => ({
+  src: `/whatsapp-gallery-${String(i + 1).padStart(2, '0')}.jpeg`,
+  heading: 'Gallery',
+  disc: '',
+}))
+
+export const FULL_GALLERY_ITEMS = [...GALLERY_ITEMS, ...WHATSAPP_GALLERY_ITEMS]
+export const FULL_GALLERY_IMAGES = FULL_GALLERY_ITEMS.map((item) => item.src)

@@ -42,7 +42,7 @@ export default function ContactUs() {
                   <p className="f15">
                     <strong>Email ID</strong>:
                   </p>
-                  <p className="f15">rohinichessacademy@gmail.com</p>
+                  <p className="f15">Sckoolchess@gmail.com</p>
                   <iframe
                     title="Rohini Chess Academy location"
                     allowFullScreen

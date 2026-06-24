@@ -3,7 +3,10 @@ import Layout from '../components/Layout'
 import HeroSlider from '../components/HeroSlider'
 import GalleryCarousel from '../components/GalleryCarousel'
 import FreeClassModal from '../components/FreeClassModal'
+import Faq from '../components/Faq'
+import Testimonials from '../components/Testimonials'
 import { GALLERY_IMAGES } from '../data/galleryImages'
+import { SCHOOL_FAQS } from '../data/schoolFaqs'
 
 export default function Home() {
   return (
@@ -104,7 +107,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="page-top">
+      <div className="page-top home-section">
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-lg-12 col-sm-12">
@@ -116,6 +119,22 @@ export default function Home() {
                 <GalleryCarousel images={GALLERY_IMAGES} />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container home-section">
+        <div className="row">
+          <div className="col-xs-12 col-lg-12 col-sm-12">
+            <Testimonials />
+          </div>
+        </div>
+      </div>
+
+      <div className="container home-section">
+        <div className="row">
+          <div className="col-xs-12 col-lg-12 col-sm-12">
+            <Faq items={SCHOOL_FAQS} title="Frequently Asked Questions" />
           </div>
         </div>
       </div>

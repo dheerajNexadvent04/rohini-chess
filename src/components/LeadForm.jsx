@@ -1,47 +1,23 @@
-import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
-
-const GSCRIPT_URL = import.meta.env.VITE_GSCRIPT_URL
+import useLeadSubmit from '../hooks/useLeadSubmit'
 
 export default function LeadForm({ formName, sourceSection = 'Main Form' }) {
-  const location = useLocation()
-  const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const { status, submit } = useLeadSubmit(formName, sourceSection)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const form = e.target
 
     // Honeypot: bots tend to fill every field, real users never see/fill this one.
-    if (form.company.value) return
+    if (form.hp_field.value) return
 
-    if (!GSCRIPT_URL) {
-      console.error('VITE_GSCRIPT_URL is not set — see .env.example')
-      setStatus('error')
-      return
-    }
-
-    setStatus('sending')
-
-    const data = new FormData()
-    data.append('name', form.name.value)
-    data.append('email', form.email.value)
-    data.append('phone', form.phone.value)
-    data.append('location', form.location.value)
-    data.append('message', form.message.value)
-    data.append('Form Name', formName)
-    data.append('type', formName)
-    data.append('source_page', location.pathname)
-    data.append('source_section', sourceSection)
-    data.append('sheet', 'Sheet2')
-
-    try {
-      await fetch(GSCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data })
-      setStatus('success')
-      form.reset()
-    } catch (err) {
-      console.error(err)
-      setStatus('error')
-    }
+    const ok = await submit({
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      location: form.location.value,
+      message: form.message.value,
+    })
+    if (ok) form.reset()
   }
 
   return (
@@ -49,7 +25,7 @@ export default function LeadForm({ formName, sourceSection = 'Main Form' }) {
       <h2>Contact Form</h2>
 
       <div className="row">
-        <input type="text" name="company" className="hp-field" tabIndex="-1" autoComplete="off" />
+        <input type="text" name="hp_field" className="hp-field" tabIndex="-1" autoComplete="off" aria-hidden="true" />
 
         <div className="col-lg-6">
           <input className="form-control full-width" name="name" pattern="[a-zA-Z ]+" placeholder="Your Name*" required type="text" />

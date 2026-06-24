@@ -3,10 +3,10 @@ import Layout from '../components/Layout'
 import Breadcrumb from '../components/Breadcrumb'
 import Lightbox from '../components/Lightbox'
 import useLightbox from '../hooks/useLightbox'
-import { GALLERY_ITEMS, GALLERY_IMAGES } from '../data/galleryImages'
+import { FULL_GALLERY_ITEMS, FULL_GALLERY_IMAGES } from '../data/galleryImages'
 
 export default function Gallery() {
-  const lightbox = useLightbox(GALLERY_IMAGES)
+  const lightbox = useLightbox(FULL_GALLERY_IMAGES)
 
   return (
     <Layout>
@@ -24,10 +24,10 @@ export default function Gallery() {
               <div id="oMainContentBlock">
                 <div id="ot-maincontent">
                   <div className="page-content gallery-grid">
-                    {GALLERY_ITEMS.map((item, i) => (
+                    {FULL_GALLERY_ITEMS.map((item, i) => (
                       <div className="col-md-4 col-sm-4 col-lg-4 col-xs-12 img-box" key={item.src}>
                         <button type="button" className="example-image-link" onClick={() => lightbox.open(i)} style={{ border: 0, padding: 0, background: 'none' }}>
-                          <img className="example-image" src={item.src} alt={item.heading || 'Gallery'} />
+                          <img className="example-image" src={item.src} alt={item.heading || 'Gallery'} loading="lazy" />
                         </button>
                         <div className="techno-de">
                           <p className="heading">{item.heading}</p>
@@ -43,7 +43,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      <Lightbox images={GALLERY_IMAGES} index={lightbox.index} onClose={lightbox.close} onPrev={lightbox.prev} onNext={lightbox.next} />
+      <Lightbox images={FULL_GALLERY_IMAGES} index={lightbox.index} onClose={lightbox.close} onPrev={lightbox.prev} onNext={lightbox.next} />
     </Layout>
   )
 }
