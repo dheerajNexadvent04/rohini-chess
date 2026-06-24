@@ -291,3 +291,12 @@ html {
 
 .lead-form-note.success { color: #2e7d32; }
 .lead-form-note.error { color: #FB3A3A; }
+
+/* Footer social icons - the new logo PNGs are full-res square badges, unlike
+   the original tiny pre-sized facebook.jpg/twitter.jpg, so size them explicitly. */
+.footer-contact .socialicons {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  object-fit: contain;
+}

@@ -42,10 +42,19 @@ export default function Footer() {
                 <div className="footer-contact">
                   <ul className="socials">
                     <a href="https://www.facebook.com/rohinichessacademy/" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="Facebook">
-                      <img src="/img1/facebook.jpg" className="socialicons" alt="Facebook" />
+                      <img src="/facebooklogo.png" className="socialicons" alt="Facebook" />
                     </a>
                     <a href="https://twitter.com/" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="Twitter">
-                      <img src="/img1/twitter.jpg" className="socialicons" alt="Twitter" />
+                      <img src="/twitterlogo.png" className="socialicons" alt="Twitter" />
+                    </a>
+                    <a href="https://www.instagram.com/sckoolchess?igsh=bzMwaTB0YWw2d2Iz" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="Instagram">
+                      <img src="/instagramlogo.png" className="socialicons" alt="Instagram" />
+                    </a>
+                    <a href="https://www.youtube.com/@sckoolchess" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="YouTube">
+                      <img src="/youtubelogo.png" className="socialicons" alt="YouTube" />
+                    </a>
+                    <a href="https://www.linkedin.com/company/sckoolchess/" target="_blank" rel="noreferrer" style={{ float: 'left', paddingRight: 7 }} title="LinkedIn">
+                      <img src="/linkedinlogo.png" className="socialicons" alt="LinkedIn" />
                     </a>
                   </ul>
 
