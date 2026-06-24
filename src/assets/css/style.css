@@ -1,0 +1,50 @@
+
+* {
+	border-radius: 0;
+}
+
+body {
+ color: #333;
+ font-size: 13px;
+ line-height: 1.6;
+}
+
+p,
+li,
+li a,
+label {
+ color: #555;
+}
+
+a {
+ color: #b24a55;
+ text-decoration: none;
+}
+
+a,
+a:focus,
+a:hover,
+a:active,
+button,
+button:hover {
+	outline: 0 !important;
+}
+
+a:focus {
+text-decoration: none;
+}
+a:hover {
+ color: #b24a55;
+ text-decoration:none;
+}
+.wrapper {
+	background: #fff;
+}
+
+select::-ms-expand {
+  display: none;
+}
+.img-box img{
+	margin-bottom: 30px;
+	width: 100%
+}
