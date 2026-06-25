@@ -12,9 +12,9 @@ export const COACHES = [
     bio: 'He is former Delhi state champion.',
   },
   {
-    name: 'Manohar Lal',
-    img: '/uploaded_files/testimonials_images/Hamid-Hasan03_09_2018_02_28_55.jpg',
-    bio: 'He is former haryana state champion current FIDE rating is 1909.',
+    name: 'Jitendra Rawat',
+    img: '/jitender rawat.jpeg',
+    bio: 'Peak Rating 1800 FIDE',
   },
   {
     name: 'Love Jindal',
