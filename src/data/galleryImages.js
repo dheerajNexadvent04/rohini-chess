@@ -42,5 +42,16 @@ export const WHATSAPP_GALLERY_ITEMS = Array.from({ length: 61 }, (_, i) => ({
   disc: '',
 }))
 
-export const FULL_GALLERY_ITEMS = [...GALLERY_ITEMS, ...WHATSAPP_GALLERY_ITEMS]
+// The 4 banner photos previously used in the homepage hero slider, before it
+// was switched over to rr1.jpeg-rr9.jpeg. Moved here instead of being dropped.
+export const RETIRED_BANNER_ITEMS = [
+  { src: '/img1/banners/rohinichessacademy1.jpg', heading: 'Gallery', disc: '' },
+  { src: '/img1/banners/rohinichessacademy2.jpg', heading: 'Gallery', disc: '' },
+  { src: '/img1/banners/rohinichessacademy4.jpg', heading: 'Gallery', disc: '' },
+  { src: '/img1/banners/rohinichessacademy5.jpg', heading: 'Gallery', disc: '' },
+]
+
+// Newest-added group first: retired hero banners (just added) -> WhatsApp
+// batch (added earlier) -> the site's original launch gallery (oldest).
+export const FULL_GALLERY_ITEMS = [...RETIRED_BANNER_ITEMS, ...WHATSAPP_GALLERY_ITEMS, ...GALLERY_ITEMS]
 export const FULL_GALLERY_IMAGES = FULL_GALLERY_ITEMS.map((item) => item.src)

@@ -21,6 +21,8 @@ export default function useLeadSubmit(formName, sourceSection) {
     data.append('email', fields.email || '')
     data.append('phone', fields.phone || '')
     data.append('location', fields.location || '')
+    data.append('date', fields.date || '')
+    data.append('time', fields.time || '')
     data.append('message', fields.message || '')
     data.append('Form Name', formName)
     data.append('type', formName)

@@ -20,9 +20,10 @@ export default function CompanyProfile() {
                 <div className="page-content">
                   <p>
                     <img
-                      src="/img1/about-us.jpg"
+                      src="/rr9.jpeg"
                       alt="About Rohini Chess Academy"
                       title="About Rohini Chess Academy"
+                      className="inline-float-img"
                       style={{ float: 'right', padding: '0 0 15px 15px' }}
                     />
                   </p>

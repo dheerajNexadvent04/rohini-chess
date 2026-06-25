@@ -121,7 +121,7 @@ export default function Services() {
 
                     <div className="col-lg-4">
                       <img
-                        src="/uploaded_files/category_images/Services22_05_2018_00_42_38.jpg"
+                        src="/rr8.jpeg"
                         title="Services"
                         alt="Services"
                         width="100%"

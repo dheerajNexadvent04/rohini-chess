@@ -2,10 +2,15 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
 
 const SLIDES = [
-  '/img1/banners/rohinichessacademy1.jpg',
-  '/img1/banners/rohinichessacademy2.jpg',
-  '/img1/banners/rohinichessacademy4.jpg',
-  '/img1/banners/rohinichessacademy5.jpg',
+  '/rr1.jpeg',
+  '/rr2.jpeg',
+  '/rr3.jpeg',
+  '/rr4.jpeg',
+  '/rr5.jpeg',
+  '/rr6.jpeg',
+  '/rr7.jpeg',
+  '/rr8.jpeg',
+  '/rr9.jpeg',
 ]
 
 export default function HeroSlider() {

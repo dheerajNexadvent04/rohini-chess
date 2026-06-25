@@ -62,9 +62,9 @@ html {
 }
 
 /* The original body.header-fixed-space-default padding-top (73px) was tuned
-   for the header's shrunk-on-scroll height. The unshrunk header on initial
-   page load is actually 98px tall, so pages without a tall hero section
-   (i.e. everything except Home) had their first heading hidden behind it. */
+   for the original header's shrunk-on-scroll height. The redesigned header's
+   unshrunk height is ~97px, so pages without a tall hero section (i.e.
+   everything except Home) had their first heading hidden behind it. */
 body.header-fixed-space-default {
   padding-top: 100px;
 }
@@ -82,7 +82,36 @@ body.header-fixed-space-default {
 /* Hero slider (replaces Nivo Slider) */
 .hero-swiper img {
   width: 100%;
+  aspect-ratio: 5 / 2;
+  object-fit: cover;
   display: block;
+}
+
+@media (max-width: 600px) {
+  .hero-swiper img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Inline supporting photo dropped into page-content text (CompanyProfile.jsx).
+   The original about-us.jpg happened to be small; newer source photos are
+   full-res, so cap it explicitly instead of letting it dominate the page. */
+.inline-float-img {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .inline-float-img {
+    float: none !important;
+    display: block;
+    margin: 0 auto 20px !important;
+    padding: 0 !important;
+    max-width: 100%;
+  }
 }
 
 /* Gallery strip carousel (replaces Owl Carousel) */
@@ -623,7 +652,8 @@ body.header-fixed-space-default {
   margin: 0 0 22px;
 }
 
-.puzzle-modal-label {
+.puzzle-modal-label,
+.lead-form-label {
   display: block;
   text-align: left;
   text-transform: uppercase;
@@ -631,6 +661,51 @@ body.header-fixed-space-default {
   font-weight: 700;
   color: #333;
   margin-bottom: 6px;
+}
+
+/* Contact forms (LeadForm + FreePuzzle share .contact-form/.full-width/
+   .custom_btn) - softened from the original sharp-cornered, label-less
+   1px-gray-border inputs into a slightly boxy but more polished card. */
+.contact-form {
+  border-radius: 8px;
+  padding: 28px 26px;
+}
+
+.contact-form h2 {
+  border-bottom: none;
+  margin-bottom: 22px;
+}
+
+.full-width,
+.full-width-m {
+  border-radius: 6px;
+  border-color: #d7d7d7;
+  height: 46px;
+  padding: 0 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.full-width-m {
+  height: 120px !important;
+  padding: 12px 14px;
+  line-height: 1.5;
+}
+
+.full-width:focus,
+.full-width-m:focus {
+  border-color: #275581;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(39, 85, 129, 0.12);
+}
+
+.custom_btn {
+  width: 100%;
+  border-radius: 6px;
+  border-width: 0;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 13px 30px;
+  transition: background-color 0.2s ease;
 }
 
 .puzzle-modal-dialog .form-control {
@@ -892,4 +967,449 @@ body.header-fixed-space-default {
 .fa {
   font-size: 24px;
   margin-top: -1px;
+}
+
+/* Schedule Online Class form (BookOnline.jsx) - custom date/time dropdowns
+   with a "Custom (Write your own)" option, boxy to match the rest of the site. */
+.schedule-class-form {
+  margin-top: 30px;
+}
+
+@media (min-width: 992px) {
+  .schedule-class-form {
+    margin-top: 0;
+  }
+}
+
+.slot-dropdown {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.slot-dropdown-trigger {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #d7d7d7;
+  border-radius: 6px;
+  padding: 0 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.slot-dropdown-trigger:hover,
+.slot-dropdown.open .slot-dropdown-trigger {
+  border-color: #275581;
+}
+
+.slot-dropdown-icon {
+  flex-shrink: 0;
+  font-size: 15px;
+}
+
+.slot-dropdown-value {
+  flex: 1;
+  color: #333;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slot-dropdown-caret {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #999;
+}
+
+.slot-custom-input {
+  margin-top: 10px;
+  margin-bottom: 0 !important;
+}
+
+.slot-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.slot-dropdown-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.slot-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.slot-dropdown-item:hover {
+  background: #f4f7fb;
+}
+
+.slot-dropdown-custom {
+  color: #275581;
+  font-weight: 600;
+}
+
+/* Schedule form's submit button now just inherits .custom_btn's default
+   navy/gold-on-hover styling, matching the Contact Form's Submit button. */
+
+/* Equal-height Contact Form / Schedule form cards (BookOnline.jsx) */
+.book-online-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-online-row .contact-form {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .book-online-row .contact-form {
+    height: auto;
+  }
+}
+
+/* ============================================================
+   Header redesign: a slim utility strip (contact info) sitting
+   above a confident single-row main bar (logo + nav), instead of
+   the original cramped two-row layout with dead space between them.
+   Keeps .header/.header-sticky/.header-fixed-shrink so the existing
+   fixed-position + shrink-on-scroll JS in Header.jsx keeps working.
+   ============================================================ */
+
+.header.header-sticky {
+  background: #275581;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact info, merged directly into the main bar instead of a separate
+   utility strip above it (which added ~34px of height for very little
+   content). Hidden below 1300px - no room next to the hamburger/collapsed
+   nav at that width, same breakpoint the nav itself collapses at. */
+.header-contact {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+@media (max-width: 1299px) {
+  .header-contact {
+    display: none !important;
+  }
+}
+
+.topbar-name {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13.5px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-name .fa {
+  font-size: 14px;
+}
+
+.topbar-phone {
+  position: relative;
+  margin-left: 16px;
+  padding-left: 16px;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: color 0.2s ease;
+}
+
+.topbar-phone::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  bottom: 1px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.topbar-phone .fa {
+  margin-right: 6px;
+  color: #ebb223;
+}
+
+.topbar-phone:hover {
+  color: #ebb223;
+}
+
+/* Main bar */
+.header-main {
+  padding: 14px 0;
+  transition: padding 0.2s ease;
+}
+
+.header-fixed-shrink .header-main {
+  padding: 4px 0;
+}
+
+.header-main-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Desktop: logo / centered nav / contact info in one flex row, instead of
+   the flex-wrap row used below 1300px (where contact is hidden and nav
+   collapses). Tried CSS Grid here first, but the browser kept splitting the
+   3 explicitly-placed items across multiple implicit row tracks for reasons
+   that didn't trace back to any rule in this file - flexbox + explicit
+   `order` sidesteps it entirely and is just as robust for this layout. */
+@media (min-width: 1300px) {
+  /* Bootstrap's .container caps at 1170px max-width *regardless of viewport
+     size* (no further increase past the 1200px breakpoint) - logo + all 9
+     nav links at full text + contact info structurally need more than that
+     even on a 1920px monitor, so the nav was overflowing its column and
+     visually overlapping the logo/contact text instead of being too narrow
+     to notice. Let the header's own container use the real available width. */
+  .header-main .container {
+    width: 100%;
+    max-width: 1600px;
+  }
+
+  .header-main-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .header-main-inner > .logo {
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  .header-main-inner > .navbar-collapse {
+    order: 2;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .header-main-inner > .header-contact {
+    order: 3;
+    flex-shrink: 0;
+  }
+
+  /* The nav <ul> is already display:flex (see .header .navbar-nav below);
+     centering it there works regardless of the parent .navbar-collapse's
+     own display mode, which Bootstrap forces to block!important anyway. */
+  .header .navbar-nav {
+    justify-content: center;
+  }
+}
+
+.header .logo {
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
+  height: auto;
+  min-height: 0;
+  min-width: 0;
+}
+
+.header .logo img {
+  height: 54px;
+  width: auto;
+  display: block;
+  transition: height 0.2s ease, transform 0.2s ease;
+}
+
+.header-fixed-shrink .logo img {
+  height: 44px;
+  margin: 0;
+}
+
+.header-fixed-shrink .navbar-nav > li > a {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+/* The original template pulled the shrunk header up by 36px via negative
+   margin (tuned for its old, shorter layout) - with the redesigned taller
+   header this pushes most of the bar above the viewport, leaving only its
+   bottom sliver visible and making the nav look "stuck" to the top edge. */
+@media (min-width: 1300px) {
+  .header-fixed .header.header-fixed-shrink {
+    margin-top: 0;
+  }
+}
+
+/* Another legacy shrink-state hack tuned for the old template (this one
+   pushed the logo image down by 38px via margin-top, presumably to
+   vertically center it within that old, much shorter shrunk bar) - same
+   selector specificity as main.css's rule so it must be matched exactly
+   to win, otherwise the logo sits low/misaligned against the nav and
+   contact info next to it. */
+.header-fixed .header.header-fixed-shrink .logo img {
+  margin: 0;
+}
+
+.header .logo:hover img {
+  transform: scale(1.03);
+}
+
+/* Nav (desktop: inline row; mobile: dropdown panel, see below) */
+.header .navbar-nav {
+  display: flex;
+  align-items: center;
+  float: none;
+  margin: 0;
+  gap: 2px;
+}
+
+.header .navbar-nav > li {
+  float: none;
+}
+
+.header .navbar-nav > li > a {
+  display: block;
+  padding: 9px 14px;
+  border-radius: 6px;
+  border-bottom: none !important;
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.header .navbar-nav > li > a:hover,
+.header .navbar-nav > li:hover > a {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffd766 !important;
+}
+
+.header .navbar-nav > .active > a,
+.header .navbar-nav > .active > a:hover,
+.header .navbar-nav > .active > a:focus {
+  background: #ebb223 !important;
+  color: #fff !important;
+}
+
+/* Custom animated hamburger (replaces the static fa-bars icon) */
+.header .navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.header .navbar-toggle:hover,
+.header .navbar-toggle:focus {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.header .navbar-toggle:active {
+  transform: scale(0.94);
+}
+
+.navbar-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.navbar-toggle.is-open .navbar-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar-toggle.is-open .navbar-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.is-open .navbar-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1299px) {
+  .header-main-inner {
+    flex-wrap: wrap;
+  }
+
+  .header .navbar-collapse {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .header .navbar-toggle {
+    display: flex;
+  }
+
+  .header .navbar-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 10px 0 4px;
+  }
+
+  .header .navbar-nav > li > a {
+    border-radius: 4px;
+    padding: 12px 16px;
+  }
+
+  .header .navbar-nav > li:not(:last-child) > a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 4px 4px 0 0;
+  }
+
+  /* Override the legacy display:none/block !important toggle with a
+     height+opacity transition so the panel slides open instead of
+     popping in/out instantly. */
+  .header .navbar-collapse.collapse {
+    display: block !important;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+  }
+
+  .header .navbar-collapse.collapse.in {
+    max-height: 80vh;
+    opacity: 1;
+    overflow-y: auto;
+  }
 }
