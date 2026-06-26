@@ -31,8 +31,8 @@ export default function Career() {
                           <strong>Current openings</strong>
                         </span>
                       </p>
-                      <h1>1. Content Writer</h1>
-                      <h1>2. Business Development cum Coordinator</h1>
+                      <h1>1. Chess Coach (minimum FIDE rating 1600)</h1>
+                      <h1>2. Sales Executives for Schools</h1>
                       <p>
                         <strong>Interested candidates, Kindly send your resume at Sckoolchess@gmail.com</strong>
                       </p>

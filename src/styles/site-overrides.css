@@ -64,9 +64,15 @@ html {
 /* The original body.header-fixed-space-default padding-top (73px) was tuned
    for the original header's shrunk-on-scroll height. The redesigned header's
    unshrunk height is ~97px, so pages without a tall hero section (i.e.
-   everything except Home) had their first heading hidden behind it. */
-body.header-fixed-space-default {
-  padding-top: 100px;
+   everything except Home) had their first heading hidden behind it.
+   Scoped to min-width:992px - that's the legacy breakpoint (main.css) where
+   the header actually switches from position:relative to fixed; below it
+   the header sits in normal flow, so this padding was just leaving a blank
+   gap above it with nothing to compensate for. */
+@media (min-width: 992px) {
+  body.header-fixed-space-default {
+    padding-top: 100px;
+  }
 }
 
 /* Section heading (".OUR GALLERY", "FREQUENTLY ASKED QUESTIONS", etc.) -
@@ -161,18 +167,120 @@ body.header-fixed-space-default {
   line-height: 1.6;
 }
 
-/* Services page promo banner (Services.jsx) - the source graphic is a dense
-   self-contained infographic (course details, topics, CTA all baked in), so
-   it runs full content-width instead of the page's usual sidebar/inline
-   image treatment, which would shrink its fine print past legibility. */
-.service-promo-banner {
-  margin-bottom: 30px;
+/* Services page promo carousel (ServicePromoCarousel.jsx) - each slide is a
+   dense self-contained infographic (course details, pricing, CTA all baked
+   in) rather than a plain photo, so slides stay tall/portrait and capped by
+   max-height with object-fit:contain instead of being cropped like the
+   gallery strip - cropping would cut off pricing or the CTA. Nav buttons are
+   flex siblings of the Swiper for the same reason as the testimonial
+   carousel: padding on .swiper itself breaks its internal width calc. */
+.service-promo-section {
+  margin-bottom: 35px;
 }
 
-.service-promo-banner img {
-  width: 100%;
+.service-promo-heading {
+  color: #275581;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.service-promo-carousel-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.service-promo-swiper {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 34px;
+}
+
+.service-promo-nav-btn {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #275581;
+  color: #275581;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 8px;
+}
+
+.service-promo-nav-btn:hover {
+  background: #275581;
+  color: #fff;
+}
+
+.service-promo-item {
   display: block;
+  width: 100%;
+  border: 1px solid #eee;
   border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+  background: #f7f9fb;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-promo-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.service-promo-item img {
+  width: 100%;
+  height: 360px;
+  object-fit: contain;
+  display: block;
+  background: #fff;
+}
+
+.service-promo-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #275581;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.service-promo-swiper .swiper-pagination-bullet {
+  background: #275581;
+  opacity: 0.3;
+}
+
+.service-promo-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #ebb223;
+}
+
+@media (max-width: 768px) {
+  .service-promo-item img {
+    height: 300px;
+  }
+
+  .service-promo-nav-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .service-promo-carousel-wrap {
+    gap: 6px;
+  }
 }
 
 /* Gallery strip carousel (replaces Owl Carousel) */
@@ -449,15 +557,19 @@ body.header-fixed-space-default {
 
 .free-class-dialog {
   position: relative;
-  max-width: 500px;
-  width: 90%;
+  max-width: min(380px, 90vw);
+  max-height: 85vh;
   background: #fff;
   border-radius: 4px;
 }
 
 .free-class-dialog img {
-  width: 100%;
   display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 4px;
 }
 
 .free-class-close {
@@ -510,6 +622,49 @@ body.header-fixed-space-default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Affiliations/partners row (Footer.jsx) - logo on top, label below, laid
+   out in a row. White backing box behind each logo since they're transparent
+   or light-background PNGs that would disappear against the dark footer. */
+.footer-partners-row {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-partners {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding-bottom: 10px;
+}
+
+.footer-partner-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.footer-partner-item img {
+  height: 44px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.footer-partner-item:hover {
+  color: #ebb223;
 }
 
 /* FAQ accordion (School.jsx and any other page that uses <Faq>) */
@@ -739,6 +894,13 @@ body.header-fixed-space-default {
 
 .full-width,
 .full-width-m {
+  /* The legacy .full-width{float:left} is pointless at width:100% but still
+     pulls the input out of normal flow, collapsing its parent .col-lg-6's
+     height (no float contributes to a non-clearfixed parent's height) -
+     below 1200px (.col-lg-6 isn't actually floated there, see main.css),
+     the NEXT field's column then rendered into that collapsed space,
+     overlapping this input and silently eating its clicks/taps. */
+  float: none;
   border-radius: 6px;
   border-color: #d7d7d7;
   height: 46px;
@@ -1150,12 +1312,28 @@ body.header-fixed-space-default {
   }
 }
 
-/* Static info card replacing the left-side form (BookOnline.jsx) - reuses
-   .contact-form's white card chrome, kept plain/boxy like the rest of the
-   site instead of the dark themed panel it was adapted from. */
-.book-info-card {
-  box-shadow: none;
-  border: none;
+/* Full-width intro (BookOnline.jsx) - heading/description run the full
+   content width, with the 3 feature points laid out as a row of columns
+   beneath it instead of stacked vertically. */
+.book-info-intro {
+  margin-bottom: 55px;
+}
+
+.book-info-image {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.book-info-image img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .book-info-image {
+    margin-bottom: 20px;
+  }
 }
 
 .book-info-eyebrow {
@@ -1191,6 +1369,17 @@ body.header-fixed-space-default {
   display: flex;
   flex-direction: column;
   gap: 22px;
+}
+
+@media (min-width: 769px) {
+  .book-info-features {
+    flex-direction: row;
+    gap: 28px;
+  }
+
+  .book-info-features li {
+    flex: 1;
+  }
 }
 
 .book-info-features li {
@@ -1443,11 +1632,7 @@ body.header-fixed-space-default {
 }
 
 .header .navbar-nav > li > a:hover,
-.header .navbar-nav > li:hover > a {
-  background: rgba(255, 255, 255, 0.14) !important;
-  color: #ffd766 !important;
-}
-
+.header .navbar-nav > li:hover > a,
 .header .navbar-nav > .active > a,
 .header .navbar-nav > .active > a:hover,
 .header .navbar-nav > .active > a:focus {
@@ -1505,6 +1690,8 @@ body.header-fixed-space-default {
 @media (max-width: 1299px) {
   .header-main-inner {
     flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .header .navbar-collapse {

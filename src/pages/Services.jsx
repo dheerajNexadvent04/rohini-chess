@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Layout from '../components/Layout'
 import Breadcrumb from '../components/Breadcrumb'
 import LeadForm from '../components/LeadForm'
+import ServicePromoCarousel from '../components/ServicePromoCarousel'
 
 export default function Services() {
   return (
@@ -26,13 +27,7 @@ export default function Services() {
             <div id="oContentBlock" className="col-lg-12">
               <div id="oMainContentBlock">
                 <div className="page-content">
-                  <div className="service-promo-banner">
-                    <img
-                      src="/service page image.jpeg"
-                      alt="Rohini Chess Academy - Chess Classes for Kids & Beginners, age 6-12 years, 3 month course"
-                      title="Chess Classes for Kids & Beginners"
-                    />
-                  </div>
+                  <ServicePromoCarousel />
 
                   <div className="row">
                     <div className="col-lg-8">

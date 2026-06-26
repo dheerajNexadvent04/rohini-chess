@@ -12,6 +12,7 @@ import './assets/css/preset-style-1.css'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 import './styles/site-overrides.css'
 
 import App from './App.jsx'

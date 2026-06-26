@@ -57,15 +57,27 @@ export default function Footer() {
                       <img src="/linkedinlogo.png" className="socialicons" alt="LinkedIn" />
                     </a>
                   </ul>
-
-                  <h3 className="fn">
-                    Designed &amp; Promoted by Webpulse -{' '}
-                    <a href="http://www.webpulseindia.com/" title="Website Designing Company India" target="_blank" rel="noreferrer" style={{ color: '#FFF' }}>
-                      Web Designing Company India
-                    </a>
-                  </h3>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row footer-partners-row">
+          <div className="col-lg-12">
+            <div className="footer-partners">
+              <span className="footer-partner-item">
+                <img src="/bni.jpeg" alt="Proud BNI Member" />
+                <span>Proud BNI Member</span>
+              </span>
+              <a href="https://www.sckoolchess.com/" target="_blank" rel="noreferrer" className="footer-partner-item">
+                <img src="/fevicon-sckoolchess.png" alt="SckoolChess" />
+                <span>SckoolChess</span>
+              </a>
+              <a href="https://nepzo.in/" target="_blank" rel="noreferrer" className="footer-partner-item">
+                <img src="/nepzo-removebg-preview.png" alt="Nepzo" />
+                <span>Nepzo</span>
+              </a>
             </div>
           </div>
         </div>

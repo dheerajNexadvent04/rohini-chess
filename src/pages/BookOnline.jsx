@@ -37,28 +37,35 @@ export default function BookOnline() {
             <div id="oContentBlock" className="col-lg-12">
               <div id="oMainContentBlock">
                 <div className="page-content">
+                  <div className="book-info-intro">
+                    <span className="book-info-eyebrow">Join Rohini Chess Academy Online</span>
+                    <h2>Schedule Your Online Class</h2>
+                    <p className="book-info-desc">
+                      Step onto the board with grandmaster strategies. Fill out the form to secure your spot in our
+                      highly sought-after online chess sessions across Delhi NCR.
+                    </p>
+                    <ul className="book-info-features">
+                      {FEATURES.map((feature) => (
+                        <li key={feature.title}>
+                          <span className="book-info-icon">
+                            <i className={`fa ${feature.icon}`} aria-hidden="true"></i>
+                          </span>
+                          <div>
+                            <h3>{feature.title}</h3>
+                            <p>{feature.text}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
                   <div className="row book-online-row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <div className="contact-form book-info-card">
-                        <span className="book-info-eyebrow">Join Rohini Chess Academy Online</span>
-                        <h2>Schedule Your Online Class</h2>
-                        <p className="book-info-desc">
-                          Step onto the board with grandmaster strategies. Fill out the form to secure your spot in
-                          our highly sought-after online chess sessions across Delhi NCR.
-                        </p>
-                        <ul className="book-info-features">
-                          {FEATURES.map((feature) => (
-                            <li key={feature.title}>
-                              <span className="book-info-icon">
-                                <i className={`fa ${feature.icon}`} aria-hidden="true"></i>
-                              </span>
-                              <div>
-                                <h3>{feature.title}</h3>
-                                <p>{feature.text}</p>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="book-info-image">
+                        <img
+                          src="/onlineclassiamge.jpeg"
+                          alt="Online exclusive chess classes - 60 minute interactive session with a FIDE rated coach, starting at Rs. 2500 for batch classes"
+                        />
                       </div>
                     </div>
 

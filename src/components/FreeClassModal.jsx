@@ -15,7 +15,7 @@ export default function FreeClassModal() {
         <button type="button" className="free-class-close" aria-label="Close" onClick={() => setOpen(false)}>
           &times;
         </button>
-        <img src="/popup.jpeg" alt="Rohini Chess Academy - Top Chess Institution in Rohini, Delhi" />
+        <img src="/finalpopup.jpeg" alt="Rohini Chess Academy - Book a Free Demo Class" />
       </div>
     </div>
   )
