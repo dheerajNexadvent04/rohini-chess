@@ -26,6 +26,14 @@ export default function Services() {
             <div id="oContentBlock" className="col-lg-12">
               <div id="oMainContentBlock">
                 <div className="page-content">
+                  <div className="service-promo-banner">
+                    <img
+                      src="/service page image.jpeg"
+                      alt="Rohini Chess Academy - Chess Classes for Kids & Beginners, age 6-12 years, 3 month course"
+                      title="Chess Classes for Kids & Beginners"
+                    />
+                  </div>
+
                   <div className="row">
                     <div className="col-lg-8">
                       <p>

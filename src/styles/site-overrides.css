@@ -114,6 +114,67 @@ body.header-fixed-space-default {
   }
 }
 
+/* Director's Message (CompanyProfile.jsx) - profile header (photo + name/title)
+   followed by the full message; a float on the photo would only cover the
+   first paragraph or two of this much text and leave an odd gap beside the
+   rest, so it sits in its own row instead. */
+.director-message {
+  margin-top: 45px;
+  padding-top: 35px;
+  border-top: 1px solid #eee;
+}
+
+.director-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 18px 0 24px;
+}
+
+.director-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.director-profile div {
+  display: flex;
+  flex-direction: column;
+}
+
+.director-profile strong {
+  color: #275581;
+  font-size: 16px;
+}
+
+.director-profile span {
+  color: #777;
+  font-size: 13px;
+}
+
+.director-signature {
+  margin-top: 24px;
+  font-weight: 700;
+  color: #275581;
+  line-height: 1.6;
+}
+
+/* Services page promo banner (Services.jsx) - the source graphic is a dense
+   self-contained infographic (course details, topics, CTA all baked in), so
+   it runs full content-width instead of the page's usual sidebar/inline
+   image treatment, which would shrink its fine print past legibility. */
+.service-promo-banner {
+  margin-bottom: 30px;
+}
+
+.service-promo-banner img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
 /* Gallery strip carousel (replaces Owl Carousel) */
 .gallery-swiper {
   margin-top: 12px;

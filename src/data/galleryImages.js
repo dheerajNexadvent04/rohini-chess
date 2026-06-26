@@ -42,12 +42,13 @@ export const WHATSAPP_GALLERY_ITEMS = Array.from({ length: 61 }, (_, i) => ({
   disc: '',
 }))
 
-// The 4 banner photos previously used in the homepage hero slider, before it
+// The banner photos previously used in the homepage hero slider, before it
 // was switched over to rr1.jpeg-rr9.jpeg. Moved here instead of being dropped.
+// (rohinichessacademy4.jpg dropped - same prize-giving banner/stage as 1.jpg,
+// just a different recipient, so the two read as a duplicate in the grid.)
 export const RETIRED_BANNER_ITEMS = [
   { src: '/img1/banners/rohinichessacademy1.jpg', heading: 'Gallery', disc: '' },
   { src: '/img1/banners/rohinichessacademy2.jpg', heading: 'Gallery', disc: '' },
-  { src: '/img1/banners/rohinichessacademy4.jpg', heading: 'Gallery', disc: '' },
   { src: '/img1/banners/rohinichessacademy5.jpg', heading: 'Gallery', disc: '' },
 ]
 
